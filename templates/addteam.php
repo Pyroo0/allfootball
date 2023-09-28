@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="..//css/addteam.css">
+    <link rel="stylesheet" href="../css/addteam.css">
     <title>Add Team Details</title>
 </head>
+
 <body>
     <div class="container">
         <h2>Add Team Details</h2>
         <form action="addteamauth.php" method="post">
-            <div class="form-group">
-                <label for="id">ID:</label>
-                <input type="text" id="id" name="id" required>
-            </div>
 
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -49,8 +47,5 @@
         </form>
     </div>
 </body>
+
 </html>
-
-
-
-

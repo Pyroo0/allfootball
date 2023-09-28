@@ -1,0 +1,117 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set the background color of the body */
+body {
+    background-color: #000; /* You can customize this */
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+/* Header styles (You can customize these) */
+.header {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 8px solid #ccc;
+    display: flex;
+    align-items: center;
+}
+
+.header p a {
+    text-decoration: none;
+    margin: auto 0vw auto 10vw;
+    color: #fff;
+}
+
+nav {
+    display: flex;
+    margin: auto;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+}
+
+li {
+    display: inline;
+    padding: 0 1vw;
+}
+
+li a,
+p {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: none;
+}
+
+nav .reg ul li a {
+    color: #ffffff;
+}
+
+nav .reg ul {
+    margin: auto 8vw auto 30vw;
+}
+
+nav .reg ul li a:hover {
+    color: #ffffff;
+    text-shadow: 2px 2px 8px #5500ff;
+}
+
+/* Team banner styles */
+.team-banner {
+    text-align: left; /* Align to the left */
+    margin-top: 20px;
+    padding-bottom: 20px;
+    display: flex; /* Add flex display to align items */
+    align-items: center; /* Center items vertically */
+}
+
+.team-banner img {
+    width: 150px; /* Reduce image width */
+    height: 133px; /* Reduce image height proportionally */
+    margin-right: 20px; /* Add some space between image and text */
+}
+
+.team-banner h1 {
+    font-size: 36px; /* Increase font size */
+    font-weight: bold;
+    color: #fff;
+    margin: 0; /* Remove margin to align text with the image */
+}
+
+
+/* Team sections styles */
+.team-sections {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px auto;
+    width: 30%;
+}
+
+.section {
+    text-align: center;
+    background-color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.section a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.section:hover {
+    background-color: limegreen;
+}

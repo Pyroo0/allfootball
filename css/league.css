@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Define root variables */
+:root {
+    --main-bg-color: rgb(0, 0, 0);
+}
+
+/* Set the background color of the body to black */
+body {
+    background-color: black;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+/* Header styles */
+.header {
+    background-color: #000;
+    color: #fff;
+    padding: 35px 0;
+    text-align: center;
+    border-bottom: 8px solid #ccc; /* Add a grey border line at the bottom */
+    display: flex;
+    align-items: center;
+}
+
+.header p a {
+    text-decoration: none;
+    margin: auto 0vw auto 10vw;
+    color: #fff;
+}
+
+nav {
+    display: flex;
+    margin: auto;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+}
+
+li {
+    display: inline;
+    padding: 0 1vw;
+}
+
+li a,
+p {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: none;
+}
+
+nav .reg ul li a {
+    color: #ffffff;
+}
+
+nav .reg ul {
+    margin: auto 8vw auto 30vw;
+}
+
+nav .reg ul li a:hover {
+    color: #ffffff;
+    text-shadow: 2px 2px 8px #5500ff;
+}
+
+/* Join section styles */
+.join {
+    background-color: rgb(211, 203, 203);
+    height: 22vh;
+}
+
+.join p {
+    color: black;
+    text-align: center;
+    padding-top: 5vh;
+    margin-bottom: 4vh;
+}
+
+.join a {
+    text-decoration: none;
+    color: black;
+    margin: auto 42vw;
+    font-weight: bold;
+    font-size: xx-large;
+    padding-left: 1.3vh;
+    display: block;
+    border: 3px solid black;
+    border-radius: 10px;
+    width: 240px;
+}
+
+.join a:hover {
+    background-color: black;
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 20px rgb(4, 10, 127);
+}
+
+.team-list {
+    margin: 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin: 10px 0;
+}
+
+.team-link {
+    text-decoration: none;
+}
+/* Hover effect to make the team cards move forward */
+.team-link:hover .team {
+    transform: translate3d(0, -5px, 0); /* Move up */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.team {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.team img {
+    width: 100px; /* Adjust image size as needed */
+    height: 100px; /* Adjust image size as needed */
+    margin-right: 10px; /* Spacing between image and name */
+}
+
+.team-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-name {
+    font-weight: bold;
+}

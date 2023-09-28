@@ -28,7 +28,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <nav>
             <ul>
                 <li><a href="onmatch.php">Matches</a></li>
-                <li><a href="#">Teams</a></li>
+                <li><a href="teams.php">Teams</a></li>
                 <li><a href="#">Competitions</a></li>
                 <li><a href="#">Extra</a></li>
             </ul>
