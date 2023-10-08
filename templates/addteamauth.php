@@ -9,30 +9,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     $history = $_POST["history"];
     $stadium = $_POST["stadium"];
     $ranking = $_POST["ranking"];
+    // $logo = $_POST["logo"]; // You may need to handle file uploads separately
 
-    // Upload the logo file
-    $logo = $_FILES["logo"]["name"];
-    $logo_tmp = $_FILES["logo"]["tmp_name"];
-    $logo_destination = 'C:/xampp/htdocs/Allfootball/uploads/' . $logo;
 
-    if (move_uploaded_file($logo_tmp, $logo_destination)) {
-       
-                $sql = "INSERT INTO team(name, coach, history, stadium, ranking, logo)
-                VALUES ('$name', '$coach', '$history', '$stadium', '$ranking', '$logo_destination')";
-
-        if ($conn->query($sql) === TRUE) {
-            echo "New record added successfully";
-            header('Location: addteam.php'); 
-            exit; 
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-    } else { 
-        echo "Error uploading the logo file.";
+    $stmt->bind_param("ssssi", $name, $coach, $history, $stadium, $ranking);
+    if($stmt->execute()) {
+        echo "inserted";
     }
+    // Execute the prepared statement
+    // if ($stmt->execute()) {
+    //     echo "Team data inserted successfully.";
+    //     header('location: addteam.php');
+    // } else {
+    //     echo "Error: " . $sql . "<br>" . $conn->error;
+    // }
 
-    
-    $conn->close();
+    // Close the prepared statement and database connection
+    // $stmt->close();
+    // $conn->close();
+    }
 }
-
 ?>
