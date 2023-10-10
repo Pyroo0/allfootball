@@ -147,7 +147,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <body>
         <header class="header">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="home.php">All Football</a>
+                <a class="navbar-brand" href="admindashboard.php">All Football</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -155,17 +155,17 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="onmatch.php">Matches</a>
+                            <a class="nav-link active" href="adonmatch.php">Matches</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="teams.php">Teams</a>
+                            <a class="nav-link" href="addteam.php">Teams</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="league.php">Competitions</a>
+                            <a class="nav-link" href="addleague.php">Competitions</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="player.php">Players</a>
+                            <a class="nav-link" href="addplayer.php">Players</a>
                         </li>
 
                         <li class="nav-item">
@@ -178,8 +178,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
         <h2 class="live-matches-title">Live Matches</h2>
         <div class="match-buttons">
-            <a href="upmatch.php" class="btn btn-primary">Upcoming Matches</a>
-            <a href="recentmatch.php" class="btn btn-primary">Recent Matches</a>
+            <a href="adupmatch.php" class="btn btn-primary">Upcoming Matches</a>
+            <a href="adrecentmatch.php" class="btn btn-primary">Recent Matches</a>
         </div>
         </div>
 
@@ -199,7 +199,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                echo '<div class="match-box" onclick="location.href=\'fullonmatch.php?matchid=' . $row['matchid'] . '\'">';
+                echo '<div class="match-box" onclick="location.href=\'matchupdate.php?matchid=' . $row['matchid'] . '\'">';
                 echo '<div class="team team-left">';
                 echo '<span>' . $row['team_one_name'] . '</span>';
                 echo '<img src="../uploads/' . $row['team_one_logo'] . '" alt="">';

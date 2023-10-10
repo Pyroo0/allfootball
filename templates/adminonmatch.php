@@ -199,7 +199,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                echo '<div class="match-box" onclick="location.href=\'fullonmatch.php?matchid=' . $row['matchid'] . '\'">';
+                echo '<div class="match-box" onclick="location.href=\'addmatch.php?matchid=' . $row['matchid'] . '\'">';
                 echo '<div class="team team-left">';
                 echo '<span>' . $row['team_one_name'] . '</span>';
                 echo '<img src="../uploads/' . $row['team_one_logo'] . '" alt="">';

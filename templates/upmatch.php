@@ -164,7 +164,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <a class="nav-link" href="league.php">Competitions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="players.php">Players</a>
+                            <a class="nav-link" href="player.php">Players</a>
                         </li>
 
                         <li class="nav-item">

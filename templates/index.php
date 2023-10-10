@@ -15,10 +15,10 @@
         <p>All Football</p>
         <nav>
             <ul>
-                <li><a href="onmatch.php">Matches</a></li>
-                <li><a href="#">Teams</a></li>
-                <li><a href="#">Competitions</a></li>
-                <li><a href="#">Extra</a></li>
+                <li><a href="signup.php">Matches</a></li>
+                <li><a href="signup.php">Teams</a></li>
+                <li><a href="signup.php">Competitions</a></li>
+                <li><a href="signup.php">Extra</a></li>
             </ul>
             <div class="reg">
 

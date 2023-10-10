@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
 
     if ($conn->query($sql)) {
         echo "Match details inserted successfully!";
-        header('Location: adminmtform.php'); 
+        header('Location: addmatch.php'); 
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

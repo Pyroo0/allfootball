@@ -132,8 +132,7 @@ body p {
     align-items: center;
     width: 450px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-bottom: 25px;
-    margin-right: 30px;
+    margin-left: 20wh;
     transition: transform 0.3s ease;
     /* Add a transition for smooth movement */
 }

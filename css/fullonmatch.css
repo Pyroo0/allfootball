@@ -18,7 +18,8 @@ body {
     color: #fff;
     padding: 15px 0;
     text-align: center;
-    border-bottom: 8px solid #ccc; /* Add a grey border line at the bottom */
+    border-bottom: 8px solid #ccc;
+    /* Add a grey border line at the bottom */
     display: flex;
     align-items: center;
 }
@@ -65,18 +66,19 @@ nav .reg ul li a:hover {
     color: #ffffff;
     text-shadow: 2px 2px 8px #5500ff;
 }
-.team-info span{
+
+.team-info span {
     color: white;
     font-weight: 100;
     font-size: x-large;
 }
 
-.score{
+.score {
     padding-left: 30px;
 }
 
 
-.score{
+.score {
     padding-right: 30px;
 }
 
@@ -93,7 +95,8 @@ nav .reg ul li a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 20px;
     text-align: center;
-    position: relative; /* Add position:relative to the match-banner */
+    position: relative;
+    /* Add position:relative to the match-banner */
 }
 
 .match-banner .competition-link {
@@ -105,14 +108,20 @@ nav .reg ul li a:hover {
 }
 
 .match-banner .live-time {
-    font-size: 24px; /* Updated font size */
+    font-size: 24px;
+    /* Updated font size */
     font-weight: bold;
     color: white;
-    margin-bottom: 5px; /* Add margin to separate timer and score */
-    position: absolute; /* Position the timer absolutely within match-banner */
-    top: -1px; /* Adjust the top value to position the timer above the score */
-    left: 50%; /* Center the timer horizontally */
-    transform: translateX(-20%); /* Center the timer horizontally */
+    margin-bottom: 5px;
+    /* Add margin to separate timer and score */
+    position: absolute;
+    /* Position the timer absolutely within match-banner */
+    top: -1px;
+    /* Adjust the top value to position the timer above the score */
+    left: 50%;
+    /* Center the timer horizontally */
+    transform: translateX(-20%);
+    /* Center the timer horizontally */
 }
 
 .match-banner .team {
@@ -157,7 +166,8 @@ nav .reg ul li a:hover {
 
 /* Styles for the lineup section */
 .lineup {
-    background-color: black; /* Updated background color */
+    background-color: black;
+    /* Updated background color */
     padding: 20px;
     text-align: center;
     width: 50%;
@@ -178,7 +188,9 @@ nav .reg ul li a:hover {
     justify-content: center;
     gap: 20px;
     padding: 20px;
+    background-color: grey;
 }
+
 
 .football-ground a {
     text-decoration: none;
@@ -217,8 +229,11 @@ nav .reg ul li a:hover {
 .football-ground .defender,
 .football-ground .midfielder,
 .football-ground .forward {
-    flex: 0 0 calc(25% - 20px); /* Set the width to 25% of the container */
-    max-width: calc(25% - 20px); /* Set the maximum width to 25% of the container */
-    height: 3cm; /* Set the height to 3cm */
-    
+    flex: 0 0 calc(25% - 20px);
+    /* Set the width to 25% of the container */
+    max-width: calc(25% - 20px);
+    /* Set the maximum width to 25% of the container */
+    height: 3cm;
+    /* Set the height to 3cm */
+
 }

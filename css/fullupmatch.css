@@ -83,7 +83,7 @@ nav .reg ul li a:hover {
 
 /* Match banner styles */
 .match-banner {
-    background-color: #403e4a;
+    background-color: grey;
     padding: 20px;
     border-radius: 10px;
     display: flex;

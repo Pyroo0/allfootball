@@ -163,7 +163,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <a class="nav-link" href="league.php">Competitions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="players.php">Players</a>
+                            <a class="nav-link" href="player.php">Players</a>
                         </li>
 
                         <li class="nav-item">
@@ -186,17 +186,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <?php
         include 'conn.php';
 
-        $sql = "SELECT matches.score1 AS score1, matches.secondscore1 AS score2, t1.name AS team_one_name, t1.logo AS team_one_logo, t2.name AS team_two_name, t2.logo AS team_two_logo 
-                FROM matches 
-                JOIN team AS t1 ON matches.tid = t1.id 
-                JOIN team AS t2 ON matches.secondtid = t2.id 
-                WHERE matches.date < CURDATE()";
-
+        $sql = "SELECT matches.id AS matchid, matches.score1 AS score1, matches.secondscore1 AS score2, t1.name AS team_one_name, t1.logo AS team_one_logo, t2.name AS team_two_name, t2.logo AS team_two_logo 
+        FROM matches 
+        JOIN team AS t1 ON matches.tid = t1.id 
+        JOIN team AS t2 ON matches.secondtid = t2.id 
+        WHERE matches.date < CURDATE()";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                echo '<div class="match-box">';
+                echo '<div class="match-box" onclick="location.href=\'fullrecent.php?matchid=' . $row['matchid'] . '\'">';
                 echo '<div class="team">';
                 echo '<img src="../uploads/' . $row['team_one_logo'] . '" alt="">';
                 echo '<span>' . $row['team_one_name'] . '</span>';

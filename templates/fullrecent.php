@@ -186,7 +186,7 @@
                 FROM matches 
                 JOIN team AS t1 ON matches.tid = t1.id 
                 JOIN team AS t2 ON matches.secondtid = t2.id 
-                WHERE matches.id = '$match_id' AND matches.date = CURDATE()";
+                WHERE matches.id = '$match_id' AND matches.date < CURDATE()";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
@@ -198,7 +198,7 @@
             echo '<span>' . $row['team_one_name'] . '</span>';
             echo '<img src="../uploads/' . $row['team_one_logo'] . '" alt="" class="team-logo1">';
             echo '</div>';
-            echo '<span class="live-time" id="countdownTimer">0:00</span>'; // Move the timer here
+            echo '<span class="live-time">90+</span>'; // Move the timer here
             echo '<div class="score">' . $row['score1'] . ' - ' . $row['secondscore1'] . '</div>';
             echo '<div class="team-info">';
             echo '<img src="../uploads/' . $row['team_two_logo'] . '" alt="" class="team-logo2">';

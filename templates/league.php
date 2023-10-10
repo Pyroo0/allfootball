@@ -171,7 +171,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="players.php">Players</a>
+                            <a class="nav-link" href="player.php">Players</a>
                         </li>
 
                         <li class="nav-item">
@@ -187,19 +187,26 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <?php
 
                 include 'conn.php';
-                $sql = "SELECT * FROM league";
+                $sql = "SELECT * FROM league WHERE id =$leagueid";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-
+                        
                         echo '<div class="col-md-4">';
                         echo '<div class="card mb-4">';
+                        
+                        // Add the anchor tag here with the onclick function
+                        echo '<a href="league_matches.php?league_id=' . $row['id'] . '" class="match-box-link">';
+                        
                         echo '<img src="../uploads/' . $row['logo'] . '" class="card-img-top" alt="' . $row['name'] . ' Logo">';
                         echo '<div class="card-body">';
                         echo '<h5 class="card-title">' . $row['name'] . '</h5>';
-                        // echo '<a href="leaguefilter.php?matchid=' . $row['matchid'] . '" class="btn btn-primary">View Details</a>';
                         echo '</div>';
+                        
+                        // Close the anchor tag
+                        echo '</a>';
+                        
                         echo '</div>';
                         echo '</div>';
                     }

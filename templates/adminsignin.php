@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/adminsignin.css">
+    <link rel="stylesheet" href="../css/signin.css">
+    
     <style>
        
     </style>
     <script src="Validate.js"></script>
-    <title>SignIn</title>
+    <title>Admin SignIn</title>
 </head>
+<body class="bg-dark">
 <body>
-    <div class="form-box" id="signin-form">
-        <form class="form" action="adminsigninauth.php" method="post">
+        <div class="form-box" id="signin-form">
+        <form class="form" action="signinauth.php" method="post">
             <span class="title">Admin Sign In</span>
             <span class="subtitle">All Football</span>
             <div class="form-container">
@@ -29,7 +31,7 @@
             <button onclick="validateForm()">Sign In</button>
         </form>
         <div class="form-section">
-            <p>Don't have an account? <a href="adminsignup.php">Join</a> </p>
+            <p>Don't have an account? <a href="signup.php">Join</a> </p>
         </div>
         <div class="signimg">
             <img src="../HD-wallpaper-football-field-abstract-art-football-stadium-soccer-stadium-football-stands-thumbnail.jpg"

@@ -1,30 +1,26 @@
-     <?php
-    session_start();
+<!DOCTYPE html>
+<html lang="en">
 
-      if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-        header("location: signin.php");
-        exit;
-    }
-    ?> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Player Details</title>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/teams.css">
+    <link rel="icon" type="image/png" href="../images/football.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Players</title>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="../images/football.png">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/home.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
-        <title>Home</title>
-        <style>
+    <style>
         .navbar {
             background-color: grey;
             width: 80%;
-            height: 11vh;
         }
 
         .navbar-light .navbar-toggler-icon {
@@ -110,15 +106,6 @@
         }
 
         .navbar-brand {
-            font-family: 'Your Desired Font', sans-serif;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #003366;
-        }
-
-        .navbar-brand {
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-size: 24px;
             font-weight: bold;
@@ -133,7 +120,8 @@
             display: inline-block;
             animation: spin 2s linear infinite;
             position: absolute;
-            right: -35px;
+            left: 190px;
+            /* Adjust the left position to move the football to the side of "All Football" */
             top: 10%;
         }
 
@@ -146,6 +134,20 @@
                 transform: rotate(360deg);
             }
         }
+
+       
+            .player-details-heading {
+            background-color: green; /* Customize the background color */
+            color: #fff; 
+            padding: 10px; 
+            text-align: center; 
+            border-radius: 5px; 
+        }
+
+        .no-border {
+            border: none;
+        }
+    </style>
     </style>
 </head>
 
@@ -172,7 +174,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="player.php">Players</a>
+                            <a class="nav-link active" href="player.php">Players</a>
                         </li>
 
                         <li class="nav-item">
@@ -183,40 +185,63 @@
             </nav>
         </header>
 
+
         <div class="container mt-5">
-            <div class="jumbotron">
-                <h1 class="display-4 animate__animated animate__fadeIn">Welcome to All Football!</h1>
-                <p class="lead">Explore the world of football with the latest updates, match schedules, and more.</p>
-                <hr class="my-4">
-                <p>Get started by browsing through matches, teams, and competitions.</p>
-                <a class="btn btn-primary btn-lg" href="onmatch.php" role="button">Explore Matches</a>
-            </div>
+        <div class="player-details-heading">
+            <h2 class="mb-0">Player Details</h2>
         </div>
+        <?php
+        include 'conn.php';
 
-        <!-- You can add more content and features below -->
+        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+            $player_id = $_GET['id'];
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            $sql = "SELECT * FROM player WHERE id = $player_id";
+            $result = $conn->query($sql);
 
-        <!-- Add this code at the bottom of your HTML page, just before the closing </body> tag -->
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                echo '<div class="row">';
+                echo '<div class="col-md-4">';
+                echo '<div class="card bg-dark text-white">';
+                echo '<img src="../uploads/' . $row['photo'] . '" class="card-img-top" alt="' . $row['name'] . '">';
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title">' . $row['name'] . '</h5>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                echo '<div class="col-md-8">';
+                echo '<div class="card bg-dark text-white">';
+                echo '<div class="card-body">';
+                echo '<p class="card-text">Age: ' . $row['age'] . ' years</p>';
+                echo '<p class="card-text">Height: ' . $row['height'] . ' cm</p>';
+                echo '<p class="card-text">Position: ' . $row['position'] . '</p>';
+                echo '<p class="card-text">Appearances: ' . $row['appearances'] . '</p>';
+                echo '<p class="card-text">Goals: ' . $row['goals'] . '</p>';
+                echo '<p class="card-text">Assists: ' . $row['assist'] . '</p>';
+                echo '<p class="card-text">Country: ' . $row['country'] . '</p>';
+                echo '<p class="card-text">Saves: ' . $row['saves'] . '</p>';
+                echo '<p class="card-text">Clean Sheets: ' . $row['cleansheet'] . '</p>';
+                echo '<p class="card-text">Shots on Target: ' . $row['shotontarget'] . '</p>';                
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            } else {
+                echo '<p class="alert alert-danger mt-4">Player not found.</p>';
+            }
+        } else {
+            echo '<p class="alert alert-danger mt-4">Invalid player ID.</p>';
+        }
 
-        <footer class="bg-dark text-white py-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>&copy; 2023 All Football</p>
-                    </div>
-                    <div class="col-md-6 text-md-right">
-                        <!-- Social media icons -->
-                        <p>Follow</p>
-                        <a href="#" class="text-white mr-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white mr-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </body>
+        $conn->close();
+        ?>
+    </div>
 
-    </html>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        </body>
+
+</html>

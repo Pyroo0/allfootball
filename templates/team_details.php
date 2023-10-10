@@ -1,30 +1,28 @@
-     <?php
-    session_start();
+<!DOCTYPE html>
+<html lang="en">
 
-      if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-        header("location: signin.php");
-        exit;
-    }
-    ?> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/teams.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Team Details</title>
+    <style>
+       
+        .jumbotron {
+            background-color: #003366;
+            color: #fff;
+            padding: 20px;
+        }
 
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="../images/football.png">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/home.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
-        <title>Home</title>
-        <style>
+        .team-logo {
+            max-width: 200px;
+        }
         .navbar {
             background-color: grey;
             width: 80%;
-            height: 11vh;
+            align-items: center;
         }
 
         .navbar-light .navbar-toggler-icon {
@@ -110,15 +108,6 @@
         }
 
         .navbar-brand {
-            font-family: 'Your Desired Font', sans-serif;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #003366;
-        }
-
-        .navbar-brand {
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-size: 24px;
             font-weight: bold;
@@ -133,7 +122,8 @@
             display: inline-block;
             animation: spin 2s linear infinite;
             position: absolute;
-            right: -35px;
+            left: 190px;
+            /* Adjust the left position to move the football to the side of "All Football" */
             top: 10%;
         }
 
@@ -164,7 +154,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="onmatch.php">Matches</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="teams.php">Teams</a>
                         </li>
                         <li class="nav-item">
@@ -183,40 +173,57 @@
             </nav>
         </header>
 
-        <div class="container mt-5">
-            <div class="jumbotron">
-                <h1 class="display-4 animate__animated animate__fadeIn">Welcome to All Football!</h1>
-                <p class="lead">Explore the world of football with the latest updates, match schedules, and more.</p>
-                <hr class="my-4">
-                <p>Get started by browsing through matches, teams, and competitions.</p>
-                <a class="btn btn-primary btn-lg" href="onmatch.php" role="button">Explore Matches</a>
-            </div>
-        </div>
+    <div class="container mt-5">
+        <?php
+        // Include your database connection file (conn.php) here
+        include 'conn.php';
 
-        <!-- You can add more content and features below -->
+        // Check if the team ID is provided in the URL
+        if (isset($_GET['team_id']) && is_numeric($_GET['team_id'])) {
+            $team_id = $_GET['team_id'];
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            // Query to retrieve team details based on team_id
+            $sql = "SELECT * FROM team WHERE id = $team_id";
+            $result = $conn->query($sql);
 
-        <!-- Add this code at the bottom of your HTML page, just before the closing </body> tag -->
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
 
-        <footer class="bg-dark text-white py-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>&copy; 2023 All Football</p>
-                    </div>
-                    <div class="col-md-6 text-md-right">
-                        <!-- Social media icons -->
-                        <p>Follow</p>
-                        <a href="#" class="text-white mr-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white mr-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </body>
+                // Display team details
+                echo '<div class="jumbotron">';
+                echo '<h2 class="display-4">' . $row['name'] . '</h2>';
+                echo '<hr class="my-4">';
+                echo '<div class="row">';
+                echo '<div class="col-md-6">';
+                echo '<img src="../uploads/' . $row['logo'] . '" alt="' . $row['name'] . ' Logo" class="team-logo">';
+                echo '</div>';
+                echo '<div class="col-md-6">';
+                echo '<p><strong>Coach:</strong> ' . $row['coach'] . '</p>';
+                echo '<p><strong>Stadium:</strong> ' . $row['stadium'] . '</p>';
+                echo '<p><strong>About:</strong> ' . $row['history'] . '</p>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
 
-    </html>
+                // Add more details as needed
+
+            } else {
+                echo '<p class="alert alert-danger">Team not found.</p>';
+            }
+
+            // Close the database connection
+            $conn->close();
+        } else {
+            echo '<p class="alert alert-danger">Invalid request. Please provide a valid team ID.</p>';
+        }
+
+        ?>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

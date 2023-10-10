@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Check if the user is not logged in
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: signin.php");
     exit;
@@ -20,9 +19,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <link rel="stylesheet" href="../css/onmatch.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
-    <title>Live Matches</title>
+    <title>Recent Matches</title>
     <style>
-        .navbar {
+    .navbar {
             background-color: grey;
             width: 80%;
             height: 12vh;
@@ -88,7 +87,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         }
 
         .match-box {
-            margin-left: 35vw;
+            margin: 10px;
         }
 
         .match-box .team {
@@ -163,7 +162,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <li class="nav-item">
                             <a class="nav-link" href="league.php">Competitions</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="player.php">Players</a>
                         </li>
@@ -174,80 +172,71 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </ul>
                 </div>
             </nav>
-        </header>   
+        </header>
 
-        <h2 class="live-matches-title">Live Matches</h2>
-        <div class="match-buttons">
-            <a href="upmatch.php" class="btn btn-primary">Upcoming Matches</a>
-            <a href="recentmatch.php" class="btn btn-primary">Recent Matches</a>
-        </div>
-        </div>
+    
+    <h2 class="live-matches-title">Recent Matches</h2>
+    <div class="match-buttons">
+        <a href="adonmatch.php" class="btn btn-primary">Live Matches</a>
+        <a href="adupmatch.php" class="btn btn-primary">Upcoming Matches</a>
+    </div>
 
 
+    <div class="match-box-container">
         <?php
-
         include 'conn.php';
-
 
         $sql = "SELECT matches.id AS matchid, matches.score1 AS score1, matches.secondscore1 AS score2, t1.name AS team_one_name, t1.logo AS team_one_logo, t2.name AS team_two_name, t2.logo AS team_two_logo 
         FROM matches 
         JOIN team AS t1 ON matches.tid = t1.id 
         JOIN team AS t2 ON matches.secondtid = t2.id 
-        WHERE matches.date = CURDATE()";
-
+        WHERE matches.date < CURDATE()";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                echo '<div class="match-box" onclick="location.href=\'fullonmatch.php?matchid=' . $row['matchid'] . '\'">';
-                echo '<div class="team team-left">';
-                echo '<span>' . $row['team_one_name'] . '</span>';
+                echo '<div class="match-box" onclick="location.href=\'fullrecent.php?matchid=' . $row['matchid'] . '\'">';
+                echo '<div class="team">';
                 echo '<img src="../uploads/' . $row['team_one_logo'] . '" alt="">';
+                echo '<span>' . $row['team_one_name'] . '</span>';
                 echo '</div>';
-                echo '<div class="score">';
-                echo '<span>' . $row['score1'] . ' - ' . $row['score2'] . '</span>';
-                echo '</div>';
-                echo '<div class="team team-right">';
+                echo '<div class="vs">' . $row['score1'] . ' - ' . $row['score2'] . '</div>';
+                echo '<div class="team">';
                 echo '<img src="../uploads/' . $row['team_two_logo'] . '" alt="">';
                 echo '<span>' . $row['team_two_name'] . '</span>';
                 echo '</div>';
                 echo '<div class="date-time">';
                 echo '<span>' . date('M j', strtotime($row['date'])) . '</span>';
-                echo '<span class="live-time">' . $row['time'] . '</span>';
                 echo '</div>';
-                echo '</div>';            }
+                echo '</div>';
+            }
         } else {
             echo '<div class="no-matches-found">';
-            echo '<p>No Live matches found.</p>';
+            echo '<p>No Recent matches found.</p>';
             echo '</div>';
         }
 
-
+        // Close the database connection
         mysqli_close($conn);
         ?>
+    </div>
 
+    <script>
+        function updateLiveTime() {
+            const matchBoxes = document.querySelectorAll(".match-box");
 
-        <script>
-            function updateLiveTime() {
-                const matchBoxes = document.querySelectorAll(".match-box");
+            matchBoxes.forEach((matchBox) => {
+                const liveTimeElement = matchBox.querySelector(".live-time");
+                const currentTime = new Date(); // Get the current time
+                const hours = currentTime.getHours().toString().padStart(2, "0");
+                const minutes = currentTime.getMinutes().toString().padStart(2, "0");
+                const liveTime = `${hours}:${minutes}`;
+                liveTimeElement.textContent = `Live Time: ${liveTime}`;
+            });
+        }
 
-                matchBoxes.forEach((matchBox) => {
-                    const liveTimeElement = matchBox.querySelector(".live-time");
-                    const currentTime = new Date(); // Get the current time
-                    const hours = currentTime.getHours().toString().padStart(2, "0");
-                    const minutes = currentTime.getMinutes().toString().padStart(2, "0");
-                    const liveTime = `${hours}:${minutes}`;
-                    liveTimeElement.textContent = `Live Time: ${liveTime}`;
-                });
-            }
-
-
-            setInterval(updateLiveTime, 60000);
-        </script>
-
-    </body>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        setInterval(updateLiveTime, 60000); // Update the live time every minute
+    </script>
+</body>
 
 </html>

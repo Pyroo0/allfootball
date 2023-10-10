@@ -18,9 +18,6 @@
 			<input type="text" name="uname" id="uname" class="input" placeholder="Username" onkeyup="namevalid()" required>
 			<p id="nm" style="color: red;"></p>
 
-			<input type="email" class="input" id="emailInput" placeholder="Email" name="email">
-			<span id="emailError" class="error"></span>
-
 			<input type="password" class="input" id="passwordInput" placeholder="Password" name="password">
 			<span id="passwordError" class="error"></span>
 
