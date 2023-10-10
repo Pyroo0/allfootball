@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-/* Define root variables */
-:root {
-    --main-bg-color: rgb(0, 0, 0);
-}
 
 /* Set the background color of the body to black */
 body {
@@ -18,7 +14,6 @@ body {
 
 /* Header styles */
 .header {
-    background-color: #000;
     color: #fff;
     padding: 35px 0;
     text-align: center;

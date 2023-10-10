@@ -75,7 +75,7 @@ nav .reg ul li a:hover {
     align-items: center; /* Center items vertically */
 }
 
-.team-banner img {
+.team-banner img {  
     width: 150px; /* Reduce image width */
     height: 133px; /* Reduce image height proportionally */
     margin-right: 20px; /* Add some space between image and text */

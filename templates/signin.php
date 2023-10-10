@@ -12,7 +12,7 @@
     <title>SignIn</title>
 </head>
 <body>
-    <div class="form-box" id="signin-form">
+        <div class="form-box" id="signin-form">
         <form class="form" action="signinauth.php" method="post">
             <span class="title">Sign In</span>
             <span class="subtitle">All Football</span>

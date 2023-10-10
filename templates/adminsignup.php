@@ -11,7 +11,7 @@
 <body>
 	<form action="adminsignupauth.php" method="post">
 	<div class="form-box">
-		<span class="title">Join</span>
+		<span class="title">Admin Signup</span>
 		<span class="subtitle">All Football</span>
 		<div class="form-container">
 

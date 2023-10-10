@@ -9,21 +9,20 @@
     --main-bg-color: rgb(0, 0, 0);
 }
 
-/* Set the background color of the body to black */
+/* Set the background color of the body to white */
 body {
-    background-color: black;
+    background-color: white;
     font-family: Arial, sans-serif;
     margin: 0;
 }
 
 /* Header styles */
 .header {
-    background-color: #000;
-    color: #fff;
+    background-color: #343a40;
+    color: #000;
     padding: 15px 0;
     text-align: center;
     border-bottom: 8px solid #ccc;
-    /* Add a grey border line at the bottom */
     display: flex;
     align-items: center;
 }
@@ -125,7 +124,7 @@ body p {
 }
 
 .match-box {
-    background-color: #403e4a;
+    background-color: #403e4a; /* Change to the desired color */
     padding: 40px;
     border-radius: 10px;
     display: flex;
@@ -198,4 +197,11 @@ span {
 
 header .uplink{
     text-decoration: none;
+}
+
+.center-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }

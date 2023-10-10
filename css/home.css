@@ -4,22 +4,22 @@
 }
 
 :root {
-    --main-bg-color: rgb(0, 0, 0);
+    --main-bg-color: #343a40;
 }
 
 body {
-    background-color: black;
+    background-color: white;
 }
 
 header {
-    height: 12vh;
     display: flex;
-    background-color: var(--main-bg-color);
     align-items: center;
+    padding-top: 20px;
 }
 
-header p {
+header p a {
     margin: auto 0vw auto 12vw;
+    text-decoration: none;
 }
 
 nav {

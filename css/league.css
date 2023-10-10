@@ -1,3 +1,4 @@
+/* Reset CSS styles */
 * {
     margin: 0;
     padding: 0;
@@ -25,17 +26,18 @@ body {
     border-bottom: 8px solid #ccc; /* Add a grey border line at the bottom */
     display: flex;
     align-items: center;
+    justify-content: space-between; /* Adjust spacing between elements */
 }
 
 .header p a {
     text-decoration: none;
-    margin: auto 0vw auto 10vw;
+    margin-left: 10vw; /* Adjust the margin to maintain spacing */
     color: #fff;
 }
 
 nav {
     display: flex;
-    margin: auto;
+    margin-right: 10vw; /* Adjust the margin to maintain spacing */
 }
 
 nav ul {
@@ -62,7 +64,7 @@ nav .reg ul li a {
 }
 
 nav .reg ul {
-    margin: auto 8vw auto 30vw;
+    margin-right: 30vw; /* Adjust the margin to maintain spacing */
 }
 
 nav .reg ul li a:hover {
@@ -102,8 +104,10 @@ nav .reg ul li a:hover {
     box-shadow: 0 5px 20px rgb(4, 10, 127);
 }
 
+/* Center align the team list */
 .team-list {
-    margin: 20px;
+    margin: 20px auto; /* Center horizontally */
+    max-width: 800px; /* Limit the maximum width */
 }
 
 ul {
@@ -117,12 +121,12 @@ li {
 .team-link {
     text-decoration: none;
 }
+
 /* Hover effect to make the team cards move forward */
 .team-link:hover .team {
     transform: translate3d(0, -5px, 0); /* Move up */
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
-
 
 .team {
     display: flex;

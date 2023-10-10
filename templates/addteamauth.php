@@ -1,32 +1,43 @@
 <?php
+include 'conn.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
-    include 'conn.php';
-
-    // Retrieve the form data
+    // Prepare and bind SQL statement to insert data
+    $sql = "INSERT INTO team (name, coach, history, stadium, ranking, logo) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    
+    // Get form data
     $name = $_POST["name"];
     $coach = $_POST["coach"];
     $history = $_POST["history"];
     $stadium = $_POST["stadium"];
     $ranking = $_POST["ranking"];
-    // $logo = $_POST["logo"]; // You may need to handle file uploads separately
-
-
-    $stmt->bind_param("ssssi", $name, $coach, $history, $stadium, $ranking);
-    if($stmt->execute()) {
-        echo "inserted";
+    
+    // Check if a file was uploaded
+    if ($_FILES['logo']['error'] === 0) {
+        $uploadDir = 'C:/xampp/htdocs/Allfootball/uploads/';
+        $logo_tmp = $_FILES['logo']['tmp_name']; // Temporary file path
+        $logo_name = $_FILES['logo']['name']; // Original file name
+        $logo_destination = $uploadDir . $logo_name; // Destination path
+        move_uploaded_file($logo_tmp, $logo_destination);
+    } else {
+        $logo_destination = null; // Set to null if no file was uploaded
     }
+
+    // Bind parameters
+    $stmt->bind_param("ssssss", $name, $coach, $history, $stadium, $ranking, $logo_destination);
+
     // Execute the prepared statement
-    // if ($stmt->execute()) {
-    //     echo "Team data inserted successfully.";
-    //     header('location: addteam.php');
-    // } else {
-    //     echo "Error: " . $sql . "<br>" . $conn->error;
-    // }
-
-    // Close the prepared statement and database connection
-    // $stmt->close();
-    // $conn->close();
+    if ($stmt->execute()) {
+        echo "New record added successfully";
+        header('Location: addteam.php'); 
+        exit; 
+    } else {
+        echo "Error: " . $stmt->error;
     }
+
+    // Close the prepared statement and the database connection
+    $stmt->close();
+    $conn->close();
 }
 ?>

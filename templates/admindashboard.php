@@ -28,15 +28,15 @@
             <!-- Add live match information here -->
         </section>
         <section id="upcoming-matches" class="dashboard-section">
-            <h2>Upcoming Matches</h2>
+            <a href="adminup.php"><h2>Upcoming Matches</h2></a></a>
             <!-- Add upcoming match information here -->
         </section>
         <section id="standings" class="dashboard-section">
-            <h2>Standings</h2>
+            <h2>Update Match</h2>
             <!-- Add standings information here -->
         </section>
         <section id="news" class="dashboard-section">
-            <h2>Football News</h2>
+            <h2>Update Team</h2>
             <!-- Add news articles here -->
         </section>
     </main>

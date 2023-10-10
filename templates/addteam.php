@@ -11,7 +11,8 @@
 <body>
     <div class="container">
         <h2>Add Team Details</h2>
-        <form action="addteamauth.php" method="post">
+        <form action="addteamauth.php" method="post" enctype="multipart/form-data">
+
 
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -40,7 +41,7 @@
 
             <div class="form-group">
                 <label for="logo">Logo:</label>
-                <input type="file" id="logo" name="logo" accept="image/*" required>
+                <input type="file" id="logo" name="logo" required>
             </div>
 
             <input type="submit" name="submit" value='submit'/>
